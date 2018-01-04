@@ -148,10 +148,82 @@ var calculadora = {
       nueve.addEventListener("mouseup", function(){
         nueve.setAttribute("style","transform:scale(1,1)")
       })
+
+      on.addEventListener("mousedown", function(){
+        on.setAttribute("style","transform:scale(0.95,0.95)")
+      })
+
+      on.addEventListener("mouseup", function(){
+        on.setAttribute("style","transform:scale(1,1)")
+      })
+
+      sign.addEventListener("mousedown", function(){
+        sign.setAttribute("style","transform:scale(0.95,0.95)")
+      })
+
+      sign.addEventListener("mouseup", function(){
+        sign.setAttribute("style","transform:scale(1,1)")
+      })
+
+      dividido.addEventListener("mousedown", function(){
+        dividido.setAttribute("style","transform:scale(0.95,0.95)")
+      })
+
+      dividido.addEventListener("mouseup", function(){
+        dividido.setAttribute("style","transform:scale(1,1)")
+      })
+
+      por.addEventListener("mousedown", function(){
+        por.setAttribute("style","transform:scale(0.95,0.95)")
+      })
+
+      por.addEventListener("mouseup", function(){
+        por.setAttribute("style","transform:scale(1,1)")
+      })
+
+      menos.addEventListener("mousedown", function(){
+        menos.setAttribute("style","transform:scale(0.95,0.95)")
+      })
+
+      menos.addEventListener("mouseup", function(){
+        menos.setAttribute("style","transform:scale(1,1)")
+      })
+
+      mas.addEventListener("mousedown", function(){
+        mas.setAttribute("style","transform:scale(0.95,0.95)")
+      })
+
+      mas.addEventListener("mouseup", function(){
+        mas.setAttribute("style","transform:scale(1,1)")
+      })
+
+      raiz.addEventListener("mousedown", function(){
+        raiz.setAttribute("style","transform:scale(0.95,0.95)")
+      })
+
+      raiz.addEventListener("mouseup", function(){
+        raiz.setAttribute("style","transform:scale(1,1)")
+      })
+
+      punto.addEventListener("mousedown", function(){
+        punto.setAttribute("style","transform:scale(0.95,0.95)")
+      })
+
+      punto.addEventListener("mouseup", function(){
+        punto.setAttribute("style","transform:scale(1,1)")
+      })
+
+      igual.addEventListener("mousedown", function(){
+        igual.setAttribute("style","transform:scale(0.95,0.95)")
+      })
+
+      igual.addEventListener("mouseup", function(){
+        igual.setAttribute("style","transform:scale(1,1)")
+      })
     },
 
-    numero: function(number){
-      alert(number)
+    numero: function(){
+      
     },
 }
 
