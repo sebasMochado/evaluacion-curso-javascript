@@ -232,9 +232,34 @@ var calculadora = {
         calculadora.clearScreen();
       });
 
-      menos.addEventListener("click", function(){
+      sign.addEventListener("click", function(){
         calculadora.changeSign();
       });
+
+      mas.addEventListener("click", function(){
+        calculadora.enterOperation("+");
+      });
+
+      menos.addEventListener("click", function(){
+        calculadora.enterOperation("-");
+      });
+
+      dividido.addEventListener("click", function(){
+        calculadora.enterOperation("/");
+      });
+
+      por.addEventListener("click", function(){
+        calculadora.enterOperation("*");
+      });
+
+      punto.addEventListener("click", function(){
+        calculadora.decimal();
+      });
+
+      igual.addEventListener("click", function(){
+        calculadora.seeResult();
+      });
+
     },
 
     enterNumber: function(valor){
@@ -243,7 +268,7 @@ var calculadora = {
           this.screenValue = "";
           this.screenValue = this.screenValue + valor;
         } else{
-          this.screenValue + valor;
+          this.screenValue = this.screenValue + valor;
         }
 
       this.updateScreen();
@@ -262,6 +287,45 @@ var calculadora = {
       this.updateScreen();
     },
 
+    decimal: function(){
+      if (this.screenValue.indexOf(".") == -1) {
+        if (this.screenValue == "") {
+          this.screenValue = this.screenValue + "0.";
+        }else{
+          this.screenValue = this.screenValue + ".";
+        }
+        this.updateScreen();
+      }
+    },
+
+    enterOperation: function(oper){
+      this.firstValue = parseFloat(this.screenValue);
+      this.screenValue = "";
+      this.operation = oper;
+      this.equalKey =  false;
+      this.updateScreen();
+    },
+
+    perfomOperation: function(firstValue, secondValue, operation){
+      switch (operation) {
+        case "+":
+          this.result = eval(firstValue + secondValue);
+          break;
+
+        case "-":
+          this.result = eval(firstValue - secondValue);
+          break;
+
+        case "*":
+          this.result = eval(firstValue * secondValue);
+          break;
+
+        case "/":
+          this.result = eval(firstValue / secondValue);
+          break;
+      }
+    },
+
     changeSign: function(){
       if(this.screenValue != "0") {
         var minSign;
@@ -275,6 +339,28 @@ var calculadora = {
         this.screenValue = minSign;
         this.updateScreen();
       }
+    },
+
+    seeResult: function(){
+      if (!this.equalKey) {
+        this.secondValue = parseFloat(this.screenValue);
+        this.lastValue = this.secondValue;
+        this.perfomOperation(this.firstValue, this.secondValue, this.operation);
+      }else{
+        this.perfomOperation(this.firstValue, this.secondValue, this.operation);
+      }
+
+      this.firstValue = this.result;
+      this.screenValue = "";
+
+      if (this.result.toString().length < 9) {
+        this.screenValue = this.result.toString();
+      }else{
+        this.screenValue = this.screenValue.toString().slice(0,8) + "...";
+      }
+
+      this.equalKey = true;
+      this.updateScreen();
     },
 
     updateScreen: function(){
