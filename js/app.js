@@ -1,230 +1,266 @@
-var display = document.getElementById("display")
-
-var operandos = {
-  operador: "",
-  operadorAnt: "",
-  numAnt: 0
-}
-
 var calculadora = {
-    init: function(){
-      var self = this
-      var cero = document.getElementById("0")
-      var uno = document.getElementById("1")
-      var dos = document.getElementById("2")
-      var tres = document.getElementById("3")
-      var cuatro = document.getElementById("4")
-      var cinco = document.getElementById("5")
-      var seis = document.getElementById("6")
-      var siete = document.getElementById("7")
-      var ocho = document.getElementById("8")
-      var nueve = document.getElementById("9")
-      var on = document.getElementById("on")
-      var sign = document.getElementById("sign")
-      var dividido = document.getElementById("dividido")
-      var por = document.getElementById("por")
-      var menos = document.getElementById("menos")
-      var mas = document.getElementById("mas")
-      var igual = document.getElementById("igual")
-      var raiz = document.getElementById("raiz")
-      var punto = document.getElementById("punto")
+  screenCalculator: document.getElementById("display"),
+  screenValue: "0",
+  operation: "",
+  firstValue: 0,
+  secondValue: 0,
+  lastValue: 0,
+  result: 0,
+  equalKey: false,
 
-      cero.addEventListener("click", function(){
-        self.numero("0")
-      })
+  init: function(){
+    this.changeSizeKeys();
+    this.assignEventCalculator();
+  },
+
+  changeSizeKeys: function(){
+      cero = document.getElementById("0");
+      uno = document.getElementById("1");
+      dos = document.getElementById("2");
+      tres = document.getElementById("3");
+      cuatro = document.getElementById("4");
+      cinco = document.getElementById("5");
+      seis = document.getElementById("6");
+      siete = document.getElementById("7");
+      ocho = document.getElementById("8");
+      nueve = document.getElementById("9");
+      on = document.getElementById("on");
+      sign = document.getElementById("sign");
+      dividido = document.getElementById("dividido");
+      por = document.getElementById("por");
+      menos = document.getElementById("menos");
+      mas = document.getElementById("mas");
+      igual = document.getElementById("igual");
+      raiz = document.getElementById("raiz");
+      punto = document.getElementById("punto");
 
       cero.addEventListener("mousedown", function(){
-        cero.setAttribute("style","transform:scale(0.95,0.95)")
-      })
+        cero.setAttribute("style","transform:scale(0.95,0.95)");
+      });
 
       cero.addEventListener("mouseup", function(){
-        cero.setAttribute("style","transform:scale(1,1)")
-      })
-
-      uno.addEventListener("click", function(){
-        self.numero("1")
-      })
+        cero.setAttribute("style","transform:scale(1,1)");
+      });
 
       uno.addEventListener("mousedown", function(){
-        uno.setAttribute("style","transform:scale(0.95,0.95)")
-      })
+        uno.setAttribute("style","transform:scale(0.95,0.95)");
+      });
 
       uno.addEventListener("mouseup", function(){
-        uno.setAttribute("style","transform:scale(1,1)")
-      })
-
-      dos.addEventListener("click", function(){
-        self.numero("2")
-      })
+        uno.setAttribute("style","transform:scale(1,1)");
+      });
 
       dos.addEventListener("mousedown", function(){
-        dos.setAttribute("style","transform:scale(0.95,0.95)")
-      })
+        dos.setAttribute("style","transform:scale(0.95,0.95)");
+      });
 
       dos.addEventListener("mouseup", function(){
-        dos.setAttribute("style","transform:scale(1,1)")
-      })
-
-      tres.addEventListener("click", function(){
-        self.numero("3")
-      })
+        dos.setAttribute("style","transform:scale(1,1)");
+      });
 
       tres.addEventListener("mousedown", function(){
-        tres.setAttribute("style","transform:scale(0.95,0.95)")
-      })
+        tres.setAttribute("style","transform:scale(0.95,0.95)");
+      });
 
       tres.addEventListener("mouseup", function(){
-        tres.setAttribute("style","transform:scale(1,1)")
-      })
-
-      cuatro.addEventListener("click", function(){
-        self.numero("4")
-      })
+        tres.setAttribute("style","transform:scale(1,1)");
+      });
 
       cuatro.addEventListener("mousedown", function(){
-        cuatro.setAttribute("style","transform:scale(0.95,0.95)")
-      })
+        cuatro.setAttribute("style","transform:scale(0.95,0.95)");
+      });
 
       cuatro.addEventListener("mouseup", function(){
-        cuatro.setAttribute("style","transform:scale(1,1)")
-      })
-
-      cinco.addEventListener("click", function(){
-        self.numero("5")
-      })
+        cuatro.setAttribute("style","transform:scale(1,1)");
+      });
 
       cinco.addEventListener("mousedown", function(){
-        cinco.setAttribute("style","transform:scale(0.95,0.95)")
-      })
+        cinco.setAttribute("style","transform:scale(0.95,0.95)");
+      });
 
       cinco.addEventListener("mouseup", function(){
-        cinco.setAttribute("style","transform:scale(1,1)")
-      })
-
-      seis.addEventListener("click", function(){
-        self.numero("6")
-      })
+        cinco.setAttribute("style","transform:scale(1,1)");
+      });
 
       seis.addEventListener("mousedown", function(){
-        seis.setAttribute("style","transform:scale(0.95,0.95)")
-      })
+        seis.setAttribute("style","transform:scale(0.95,0.95)");
+      });
 
       seis.addEventListener("mouseup", function(){
-        seis.setAttribute("style","transform:scale(1,1)")
-      })
-
-      siete.addEventListener("click", function(){
-        self.numero("7")
-      })
+        seis.setAttribute("style","transform:scale(1,1)");
+      });
 
       siete.addEventListener("mousedown", function(){
-        siete.setAttribute("style","transform:scale(0.95,0.95)")
-      })
+        siete.setAttribute("style","transform:scale(0.95,0.95)");
+      });
 
       siete.addEventListener("mouseup", function(){
-        siete.setAttribute("style","transform:scale(1,1)")
-      })
-
-      ocho.addEventListener("click", function(){
-        self.numero("8")
-      })
+        siete.setAttribute("style","transform:scale(1,1)");
+      });
 
       ocho.addEventListener("mousedown", function(){
-        ocho.setAttribute("style","transform:scale(0.95,0.95)")
-      })
+        ocho.setAttribute("style","transform:scale(0.95,0.95)");
+      });
 
       ocho.addEventListener("mouseup", function(){
-        ocho.setAttribute("style","transform:scale(1,1)")
-      })
-
-      nueve.addEventListener("click", function(){
-        self.numero("9")
-      })
+        ocho.setAttribute("style","transform:scale(1,1)");
+      });
 
       nueve.addEventListener("mousedown", function(){
-        nueve.setAttribute("style","transform:scale(0.95,0.95)")
-      })
+        nueve.setAttribute("style","transform:scale(0.95,0.95)");
+      });
 
       nueve.addEventListener("mouseup", function(){
-        nueve.setAttribute("style","transform:scale(1,1)")
-      })
+        nueve.setAttribute("style","transform:scale(1,1)");
+      });
 
       on.addEventListener("mousedown", function(){
-        on.setAttribute("style","transform:scale(0.95,0.95)")
-      })
+        on.setAttribute("style","transform:scale(0.95,0.95)");
+      });
 
       on.addEventListener("mouseup", function(){
-        on.setAttribute("style","transform:scale(1,1)")
-      })
+        on.setAttribute("style","transform:scale(1,1)");
+      });
 
       sign.addEventListener("mousedown", function(){
-        sign.setAttribute("style","transform:scale(0.95,0.95)")
-      })
+        sign.setAttribute("style","transform:scale(0.95,0.95)");
+      });
 
       sign.addEventListener("mouseup", function(){
-        sign.setAttribute("style","transform:scale(1,1)")
-      })
+        sign.setAttribute("style","transform:scale(1,1)");
+      });
 
       dividido.addEventListener("mousedown", function(){
-        dividido.setAttribute("style","transform:scale(0.95,0.95)")
-      })
+        dividido.setAttribute("style","transform:scale(0.95,0.95)");
+      });
 
       dividido.addEventListener("mouseup", function(){
-        dividido.setAttribute("style","transform:scale(1,1)")
-      })
+        dividido.setAttribute("style","transform:scale(1,1)");
+      });
 
       por.addEventListener("mousedown", function(){
-        por.setAttribute("style","transform:scale(0.95,0.95)")
-      })
+        por.setAttribute("style","transform:scale(0.95,0.95)");
+      });
 
       por.addEventListener("mouseup", function(){
-        por.setAttribute("style","transform:scale(1,1)")
-      })
+        por.setAttribute("style","transform:scale(1,1)");
+      });
 
       menos.addEventListener("mousedown", function(){
-        menos.setAttribute("style","transform:scale(0.95,0.95)")
-      })
+        menos.setAttribute("style","transform:scale(0.95,0.95)");
+      });
 
       menos.addEventListener("mouseup", function(){
-        menos.setAttribute("style","transform:scale(1,1)")
-      })
+        menos.setAttribute("style","transform:scale(1,1)");
+      });
 
       mas.addEventListener("mousedown", function(){
-        mas.setAttribute("style","transform:scale(0.95,0.95)")
-      })
+        mas.setAttribute("style","transform:scale(0.95,0.95)");
+      });
 
       mas.addEventListener("mouseup", function(){
-        mas.setAttribute("style","transform:scale(1,1)")
-      })
+        mas.setAttribute("style","transform:scale(1,1)");
+      });
 
       raiz.addEventListener("mousedown", function(){
-        raiz.setAttribute("style","transform:scale(0.95,0.95)")
-      })
+        raiz.setAttribute("style","transform:scale(0.95,0.95)");
+      });
 
       raiz.addEventListener("mouseup", function(){
-        raiz.setAttribute("style","transform:scale(1,1)")
-      })
+        raiz.setAttribute("style","transform:scale(1,1)");
+      });
 
       punto.addEventListener("mousedown", function(){
-        punto.setAttribute("style","transform:scale(0.95,0.95)")
-      })
+        punto.setAttribute("style","transform:scale(0.95,0.95)");
+      });
 
       punto.addEventListener("mouseup", function(){
-        punto.setAttribute("style","transform:scale(1,1)")
-      })
+        punto.setAttribute("style","transform:scale(1,1)");
+      });
 
       igual.addEventListener("mousedown", function(){
-        igual.setAttribute("style","transform:scale(0.95,0.95)")
-      })
+        igual.setAttribute("style","transform:scale(0.95,0.95)");
+      });
 
       igual.addEventListener("mouseup", function(){
-        igual.setAttribute("style","transform:scale(1,1)")
-      })
+        igual.setAttribute("style","transform:scale(1,1)");
+      });
     },
 
-    numero: function(){
-      
-    },
-}
+    assignEventCalculator: function(){
+      cero.addEventListener("click", function(){
+        calculadora.enterNumber("0");
+      });
 
-calculadora.init()
+      uno.addEventListener("click", function(){
+        calculadora.enterNumber("1");
+      });
+
+      dos.addEventListener("click", function(){
+        calculadora.enterNumber("2");
+      });
+
+      tres.addEventListener("click", function(){
+        calculadora.enterNumber("3");
+      });
+
+      cuatro.addEventListener("click", function(){
+        calculadora.enterNumber("4");
+      });
+
+      cinco.addEventListener("click", function(){
+        calculadora.enterNumber("5");
+      });
+
+      seis.addEventListener("click", function(){
+        calculadora.enterNumber("6");
+      });
+
+      siete.addEventListener("click", function(){
+        calculadora.enterNumber("7");
+      });
+
+      ocho.addEventListener("click", function(){
+        calculadora.enterNumber("8");
+      });
+
+      nueve.addEventListener("click", function(){
+        calculadora.enterNumber("9");
+      });
+
+      on.addEventListener("click", function(){
+        calculadora.clearScreen();
+      });
+    },
+
+    enterNumber: function(valor){
+      if (this.screenValue.length < 8) {
+        if (this.screenValue == "0") {
+          this.screenValue = "";
+          this.screenValue = this.screenValue + valor;
+        } else{
+          this.screenValue + valor;
+        }
+
+      this.updateScreen();
+      }
+    },
+
+    clearScreen: function(){
+      this.screenValue = "0";
+      this.operation = "";
+      this.firstValue = 0;
+      this.secondValue = 0;
+      this.result = 0;
+      this.operation = "";
+      this.lastValue = 0;
+      this.equalKey = false;
+      this.updateScreen();
+    },
+
+    updateScreen: function(){
+      this.screenCalculator.innerHTML = this.screenValue;
+    },
+  };
+
+  calculadora.init();
