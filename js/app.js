@@ -231,6 +231,10 @@ var calculadora = {
       on.addEventListener("click", function(){
         calculadora.clearScreen();
       });
+
+      menos.addEventListener("click", function(){
+        calculadora.changeSign();
+      });
     },
 
     enterNumber: function(valor){
@@ -256,6 +260,21 @@ var calculadora = {
       this.lastValue = 0;
       this.equalKey = false;
       this.updateScreen();
+    },
+
+    changeSign: function(){
+      if(this.screenValue != "0") {
+        var minSign;
+        if (this.screenValue.charAt(0) == "-") {
+          minSign = this.screenValue.slice(1);
+        }else{
+          minSign = "-" + this.screenValue;
+        }
+
+        this.screenValue = "";
+        this.screenValue = minSign;
+        this.updateScreen();
+      }
     },
 
     updateScreen: function(){
